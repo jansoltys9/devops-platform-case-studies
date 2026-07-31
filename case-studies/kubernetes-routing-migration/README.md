@@ -2,6 +2,8 @@
 
 ## ingress-nginx and NLB to Gateway API and AWS ALB
 
+![Kubernetes routing migration from ingress-nginx and NLB to Gateway API and AWS ALB](assets/kubernetes-routing-migration-before-after.png)
+
 ## Context
 
 This case study describes the refactoring of the application-routing layer in an AWS EKS platform.
