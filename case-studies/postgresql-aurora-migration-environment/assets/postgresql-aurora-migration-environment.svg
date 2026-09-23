@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">Cross-region PostgreSQL to Aurora migration environment</title>
+  <desc id="desc">Application and EC2 PostgreSQL 15 in us-east-1, VPC 10.10.0.0/16. DMS reads source rows and logical changes over VPC peering, then writes locally to Aurora PostgreSQL 17.7 in eu-west-1, VPC 10.20.0.0/16. Helper EC2 provides SSM and psql administration of Aurora. DMS is in the target region.</desc>
+  <rect width="1440" height="760" fill="#ffffff"/>
+  <text x="40" y="57" font-family="Arial" font-size="34" font-weight="bold" fill="#152b43">A private migration path across two regions</text>
+  <rect x="40" y="96" width="480" height="530" rx="16" fill="#f2f6fc" stroke="#c1cfe0" stroke-width="2"/>
+  <rect x="670" y="96" width="730" height="530" rx="16" fill="#f0f8f6" stroke="#b9d6ce" stroke-width="2"/>
+  <text x="68" y="142" font-family="Arial" font-size="29" font-weight="bold" fill="#214e85">SOURCE · us-east-1</text>
+  <text x="68" y="178" font-family="Arial" font-size="24" fill="#465b71">VPC 10.10.0.0/16</text>
+  <text x="698" y="142" font-family="Arial" font-size="29" font-weight="bold" fill="#116658">TARGET · eu-west-1</text>
+  <text x="698" y="178" font-family="Arial" font-size="24" fill="#465b71">VPC 10.20.0.0/16</text>
+  <rect x="85" y="223" width="390" height="105" rx="10" fill="#ffffff" stroke="#214e85" stroke-width="2"/>
+  <text x="280" y="264" text-anchor="middle" font-family="Arial" font-size="27" font-weight="bold" fill="#152b43">Application EC2</text>
+  <text x="280" y="301" text-anchor="middle" font-family="Arial" font-size="24" fill="#465b71">Traffic generator</text>
+  <line x1="280" y1="328" x2="280" y2="440" stroke="#214e85" stroke-width="4"/>
+  <polygon points="272,429 288,429 280,443" fill="#214e85"/>
+  <text x="300" y="382" font-family="Arial" font-size="23" fill="#214e85">Reads / writes</text>
+  <rect x="85" y="445" width="390" height="119" rx="10" fill="#ffffff" stroke="#214e85" stroke-width="2"/>
+  <text x="280" y="490" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#152b43">EC2 PostgreSQL 15</text>
+  <text x="280" y="530" text-anchor="middle" font-family="Arial" font-size="24" fill="#465b71">appdb / schema app</text>
+  <text x="589" y="394" text-anchor="middle" font-family="Arial" font-size="25" font-weight="bold" fill="#214e85">VPC peering</text>
+  <text x="589" y="428" text-anchor="middle" font-family="Arial" font-size="22" fill="#465b71">Cross-region</text>
+  <line x1="475" y1="503" x2="711" y2="503" stroke="#214e85" stroke-width="4"/>
+  <polygon points="700,495 700,511 714,503" fill="#214e85"/>
+  <text x="590" y="480" text-anchor="middle" font-family="Arial" font-size="22" fill="#214e85">Rows + CDC</text>
+  <rect x="715" y="445" width="220" height="119" rx="10" fill="#ffffff" stroke="#116658" stroke-width="2"/>
+  <text x="825" y="490" text-anchor="middle" font-family="Arial" font-size="29" font-weight="bold" fill="#152b43">AWS DMS</text>
+  <text x="825" y="530" text-anchor="middle" font-family="Arial" font-size="23" fill="#465b71">Reads source</text>
+  <line x1="935" y1="503" x2="1073" y2="503" stroke="#116658" stroke-width="4"/>
+  <polygon points="1062,495 1062,511 1076,503" fill="#116658"/>
+  <text x="1005" y="480" text-anchor="middle" font-family="Arial" font-size="22" fill="#116658">Apply</text>
+  <rect x="1080" y="445" width="275" height="119" rx="10" fill="#ffffff" stroke="#116658" stroke-width="2"/>
+  <text x="1217" y="490" text-anchor="middle" font-family="Arial" font-size="29" font-weight="bold" fill="#152b43">Aurora</text>
+  <text x="1217" y="530" text-anchor="middle" font-family="Arial" font-size="24" fill="#465b71">PostgreSQL 17.7</text>
+  <rect x="1050" y="223" width="305" height="105" rx="10" fill="#ffffff" stroke="#116658" stroke-width="2"/>
+  <text x="1202" y="264" text-anchor="middle" font-family="Arial" font-size="27" font-weight="bold" fill="#152b43">Helper EC2</text>
+  <text x="1202" y="301" text-anchor="middle" font-family="Arial" font-size="24" fill="#465b71">SSM / psql</text>
+  <line x1="1217" y1="328" x2="1217" y2="440" stroke="#116658" stroke-width="4"/>
+  <polygon points="1209,429 1225,429 1217,443" fill="#116658"/>
+  <text x="1195" y="382" text-anchor="end" font-family="Arial" font-size="23" fill="#116658">Admin / validate</text>
+  <text x="40" y="677" font-family="Arial" font-size="24" font-weight="bold" fill="#152b43">DMS captures across regions and applies locally to Aurora.</text>
+  <text x="40" y="716" font-family="Arial" font-size="22" fill="#465b71">Replication arrows show data flow. DMS initiates the source connection; application cutover needs its own path.</text>
+</svg>

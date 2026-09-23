@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="560" viewBox="0 0 1440 560" role="img" aria-labelledby="title desc">
+  <title id="title">Prepare, Replicate, Switch, Repair, Validate</title>
+  <desc id="desc">Prepare source, Aurora, network and DMS. Replicate after green endpoints, a failed task, and grants/CDC corrections. Switch by freezing source writes, catching up CDC and pointing the app to Aurora. Repair application networking, sequences, defaults, grants and configuration. Validate that the application runs and writes new data on Aurora.</desc>
+  <rect width="1440" height="560" fill="#ffffff"/>
+  <text x="40" y="57" font-family="Arial" font-size="34" font-weight="bold" fill="#152b43">The migration ends when the application works</text>
+  <text x="40" y="100" font-family="Arial" font-size="24" fill="#465b71">PostgreSQL on EC2 → AWS DMS Full Load + CDC → Aurora PostgreSQL</text>
+  <rect x="40" y="141" width="244" height="293" rx="12" fill="#f2f6fc" stroke="#c1cfe0" stroke-width="2"/>
+  <rect x="319" y="141" width="244" height="293" rx="12" fill="#f2f6fc" stroke="#c1cfe0" stroke-width="2"/>
+  <rect x="598" y="141" width="244" height="293" rx="12" fill="#f2f6fc" stroke="#c1cfe0" stroke-width="2"/>
+  <rect x="877" y="141" width="244" height="293" rx="12" fill="#fff7ed" stroke="#d9c5aa" stroke-width="2"/>
+  <rect x="1156" y="141" width="244" height="293" rx="12" fill="#f0f8f6" stroke="#b9d6ce" stroke-width="2"/>
+  <polygon points="292,277 310,287 292,297" fill="#465b71"/>
+  <polygon points="571,277 589,287 571,297" fill="#465b71"/>
+  <polygon points="850,277 868,287 850,297" fill="#465b71"/>
+  <polygon points="1129,277 1147,287 1129,297" fill="#465b71"/>
+  <text x="61" y="190" font-family="Arial" font-size="28" font-weight="bold" fill="#214e85">1 PREPARE</text>
+  <text x="340" y="190" font-family="Arial" font-size="28" font-weight="bold" fill="#214e85">2 REPLICATE</text>
+  <text x="619" y="190" font-family="Arial" font-size="28" font-weight="bold" fill="#214e85">3 SWITCH</text>
+  <text x="898" y="190" font-family="Arial" font-size="28" font-weight="bold" fill="#875018">4 REPAIR</text>
+  <text x="1177" y="190" font-family="Arial" font-size="28" font-weight="bold" fill="#116658">5 VALIDATE</text>
+  <text x="61" y="246" font-family="Arial" font-size="25" fill="#152b43">Source + Aurora</text>
+  <text x="61" y="285" font-family="Arial" font-size="25" fill="#152b43">CDC prerequisites</text>
+  <text x="61" y="324" font-family="Arial" font-size="25" fill="#152b43">Network + DMS</text>
+  <text x="340" y="246" font-family="Arial" font-size="25" fill="#152b43">Green endpoints</text>
+  <text x="340" y="285" font-family="Arial" font-size="25" fill="#875018">Task failed</text>
+  <text x="340" y="324" font-family="Arial" font-size="25" fill="#152b43">Grants / CDC fix</text>
+  <text x="340" y="388" font-family="Arial" font-size="25" font-weight="bold" fill="#116658">Full Load + CDC</text>
+  <text x="619" y="246" font-family="Arial" font-size="25" fill="#152b43">Freeze source</text>
+  <text x="619" y="285" font-family="Arial" font-size="25" fill="#152b43">Catch up CDC</text>
+  <text x="619" y="324" font-family="Arial" font-size="25" fill="#152b43">App → Aurora</text>
+  <text x="619" y="363" font-family="Arial" font-size="25" fill="#152b43">Restart / reconnect</text>
+  <text x="898" y="246" font-family="Arial" font-size="25" fill="#152b43">App network path</text>
+  <text x="898" y="285" font-family="Arial" font-size="25" fill="#152b43">Sequences</text>
+  <text x="898" y="324" font-family="Arial" font-size="25" fill="#152b43">Defaults</text>
+  <text x="898" y="363" font-family="Arial" font-size="25" fill="#152b43">Grants / config</text>
+  <text x="1177" y="246" font-family="Arial" font-size="25" fill="#152b43">Application runs</text>
+  <text x="1177" y="285" font-family="Arial" font-size="25" fill="#152b43">New data written</text>
+  <text x="1177" y="324" font-family="Arial" font-size="25" fill="#152b43">directly on Aurora</text>
+  <text x="40" y="495" font-family="Arial" font-size="24" font-weight="bold" fill="#152b43">Connectivity ≠ replication</text>
+  <text x="490" y="495" font-family="Arial" font-size="24" font-weight="bold" fill="#152b43">Replication ≠ cutover readiness</text>
+  <text x="980" y="495" font-family="Arial" font-size="24" font-weight="bold" fill="#152b43">Cutover ≠ application readiness</text>
+</svg>

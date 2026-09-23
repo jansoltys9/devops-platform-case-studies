@@ -22,9 +22,20 @@ The repository complements the broader
 
 A routing architecture refactoring within an AWS EKS platform, introducing Kubernetes Gateway API, AWS Load Balancer Controller and Application Load Balancer integration.
 
+### PostgreSQL → Aurora Migration Environment
+
+[Building a Cross-Region PostgreSQL to Aurora Migration Environment](case-studies/postgresql-aurora-migration-environment/README.md)
+
+Preparing source PostgreSQL, private cross-region networking, Aurora administration and AWS DMS prerequisites for a running application migration.
+
+### AWS DMS Full Load, CDC and Application Cutover
+
+[From Green DMS Endpoints to a Working Application](case-studies/postgresql-aurora-dms-cutover/README.md)
+
+A lab migration through replication troubleshooting, a real application cutover, network and sequence/default repairs, and successful new application writes on Aurora.
+
 ## Planned Case Studies
 
-- AWS DMS cross-region PostgreSQL migration
 - GitLab container-image pipeline evolution
 - Helm chart structure and runtime refactoring
 - EKS upgrade and support-lifecycle strategy

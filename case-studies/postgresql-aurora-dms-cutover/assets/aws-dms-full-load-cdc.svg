@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">AWS DMS Full Load and Change Data Capture</title>
+  <desc id="desc">Full Load copies existing PostgreSQL table rows through AWS DMS to Aurora. CDC captures ongoing INSERT, UPDATE and DELETE changes through PostgreSQL WAL and logical decoding, then AWS DMS, to Aurora. DMS and Aurora are in eu-west-1. Replicated data does not guarantee application-ready schema metadata.</desc>
+  <rect width="1440" height="760" fill="#ffffff"/>
+  <text x="40" y="57" font-family="Arial" font-size="34" font-weight="bold" fill="#152b43">Two data flows, one migration</text>
+  <text x="40" y="111" font-family="Arial" font-size="25" font-weight="bold" fill="#214e85">SOURCE POSTGRESQL</text>
+  <text x="704" y="111" font-family="Arial" font-size="25" font-weight="bold" fill="#116658">AWS DMS</text>
+  <text x="1130" y="111" font-family="Arial" font-size="25" font-weight="bold" fill="#116658">AURORA</text>
+  <text x="40" y="145" font-family="Arial" font-size="23" fill="#465b71">us-east-1</text>
+  <text x="704" y="145" font-family="Arial" font-size="23" fill="#465b71">eu-west-1</text>
+  <text x="1130" y="145" font-family="Arial" font-size="23" fill="#465b71">eu-west-1</text>
+  <rect x="40" y="177" width="1360" height="182" rx="14" fill="#f2f6fc"/>
+  <text x="66" y="218" font-family="Arial" font-size="26" font-weight="bold" fill="#214e85">FULL LOAD · initial dataset</text>
+  <rect x="66" y="248" width="340" height="75" rx="8" fill="#ffffff" stroke="#214e85" stroke-width="2"/>
+  <text x="236" y="294" text-anchor="middle" font-family="Arial" font-size="27" fill="#152b43">Existing table rows</text>
+  <line x1="406" y1="285" x2="695" y2="285" stroke="#214e85" stroke-width="4"/>
+  <polygon points="684,277 684,293 698,285" fill="#214e85"/>
+  <rect x="704" y="248" width="214" height="75" rx="8" fill="#ffffff" stroke="#214e85" stroke-width="2"/>
+  <text x="811" y="294" text-anchor="middle" font-family="Arial" font-size="27" fill="#152b43">Read + load</text>
+  <line x1="918" y1="285" x2="1109" y2="285" stroke="#214e85" stroke-width="4"/>
+  <polygon points="1098,277 1098,293 1112,285" fill="#214e85"/>
+  <rect x="1118" y="248" width="256" height="75" rx="8" fill="#ffffff" stroke="#214e85" stroke-width="2"/>
+  <text x="1246" y="294" text-anchor="middle" font-family="Arial" font-size="27" fill="#152b43">Initial rows</text>
+  <rect x="40" y="385" width="1360" height="251" rx="14" fill="#f0f8f6"/>
+  <text x="66" y="426" font-family="Arial" font-size="26" font-weight="bold" fill="#116658">CDC · ongoing source changes</text>
+  <text x="66" y="472" font-family="Arial" font-size="26" fill="#152b43">INSERT / UPDATE / DELETE</text>
+  <line x1="236" y1="485" x2="236" y2="516" stroke="#116658" stroke-width="4"/>
+  <polygon points="228,505 244,505 236,519" fill="#116658"/>
+  <rect x="66" y="525" width="340" height="75" rx="8" fill="#ffffff" stroke="#116658" stroke-width="2"/>
+  <text x="236" y="571" text-anchor="middle" font-family="Arial" font-size="27" fill="#152b43">PostgreSQL WAL</text>
+  <line x1="406" y1="562" x2="695" y2="562" stroke="#116658" stroke-width="4"/>
+  <polygon points="684,554 684,570 698,562" fill="#116658"/>
+  <text x="550" y="536" text-anchor="middle" font-family="Arial" font-size="24" fill="#116658">Logical decoding</text>
+  <rect x="704" y="525" width="214" height="75" rx="8" fill="#ffffff" stroke="#116658" stroke-width="2"/>
+  <text x="811" y="571" text-anchor="middle" font-family="Arial" font-size="27" fill="#152b43">Capture + apply</text>
+  <line x1="918" y1="562" x2="1109" y2="562" stroke="#116658" stroke-width="4"/>
+  <polygon points="1098,554 1098,570 1112,562" fill="#116658"/>
+  <rect x="1118" y="525" width="256" height="75" rx="8" fill="#ffffff" stroke="#116658" stroke-width="2"/>
+  <text x="1246" y="571" text-anchor="middle" font-family="Arial" font-size="27" fill="#152b43">Ongoing changes</text>
+  <text x="40" y="691" font-family="Arial" font-size="25" font-weight="bold" fill="#152b43">Full Load copies existing data. CDC keeps applying new source changes.</text>
+  <text x="40" y="729" font-family="Arial" font-size="22" fill="#465b71">Target defaults, sequences, permissions and application behavior still require explicit validation.</text>
+</svg>
