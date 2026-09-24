@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">EKS 1.35 exposed an Argo CD compatibility gap</title>
+  <desc id="desc">Before: Terraform manages Argo CD 2.13.3, chart 7.7.16. After the EKS upgrade to 1.35, Deployment status.terminatingReplicas cannot be compared: ComparisonError and Sync Unknown. Applications keep running. After: Terraform upgrades Argo CD to 3.5.2, chart 10.4.1. Comparison and reconciliation recover on the same EKS version, with the same application workloads healthy. Runtime observations are supplied execution history.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#57606a"/></marker>
+  </defs>
+  <rect width="1400" height="900" fill="#ffffff"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#1f2328">
+    <text x="48" y="63" font-size="36" font-weight="700">EKS 1.35 exposed a GitOps compatibility gap</text>
+    <text x="48" y="104" font-size="24" fill="#57606a">Applications kept running. Argo CD needed to understand newer live state.</text>
+
+    <rect x="48" y="143" width="628" height="663" rx="14" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+    <rect x="724" y="143" width="628" height="663" rx="14" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+    <text x="76" y="187" font-size="26" font-weight="700">BEFORE</text>
+    <text x="752" y="187" font-size="26" font-weight="700">AFTER</text>
+    <text x="76" y="221" font-size="23" fill="#57606a">EKS upgraded; comparison impaired</text>
+    <text x="752" y="221" font-size="23" fill="#57606a">Argo CD upgraded; GitOps restored</text>
+
+    <rect x="76" y="246" width="572" height="65" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <rect x="752" y="246" width="572" height="65" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="362" y="287" text-anchor="middle" font-size="25" font-weight="700">Terraform · owns the Helm release</text>
+    <text x="1038" y="287" text-anchor="middle" font-size="25" font-weight="700">Terraform · upgrades the Helm release</text>
+    <path d="M362 312 V341" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <path d="M1038 312 V341" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+    <rect x="76" y="351" width="572" height="95" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <rect x="752" y="351" width="572" height="95" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="362" y="391" text-anchor="middle" font-size="29" font-weight="700">Argo CD 2.13.3</text>
+    <text x="362" y="424" text-anchor="middle" font-size="23" fill="#57606a">Helm chart 7.7.16</text>
+    <text x="1038" y="391" text-anchor="middle" font-size="29" font-weight="700">Argo CD 3.5.2</text>
+    <text x="1038" y="424" text-anchor="middle" font-size="23" fill="#57606a">Helm chart 10.4.1</text>
+
+    <rect x="76" y="466" width="572" height="114" rx="8" fill="#fff1f0" stroke="#d9a29e"/>
+    <text x="362" y="500" text-anchor="middle" font-size="25" font-weight="700" fill="#a02c24">ComparisonError · Sync Unknown</text>
+    <text x="362" y="532" text-anchor="middle" font-size="22" fill="#a02c24">.status.terminatingReplicas</text>
+    <text x="362" y="561" text-anchor="middle" font-size="22" fill="#a02c24">Live-state field absent from diff schema</text>
+    <rect x="752" y="466" width="572" height="114" rx="8" fill="#dafbe1" stroke="#9bcbaa"/>
+    <text x="1038" y="500" text-anchor="middle" font-size="25" font-weight="700" fill="#116329">Comparison restored</text>
+    <text x="1038" y="532" text-anchor="middle" font-size="24" fill="#116329">Synced / Healthy</text>
+    <text x="1038" y="561" text-anchor="middle" font-size="22" fill="#116329">GitOps reconciliation working again</text>
+
+    <rect x="76" y="604" width="572" height="171" rx="8" fill="#ffffff" stroke="#9bcbaa" stroke-width="2"/>
+    <rect x="752" y="604" width="572" height="171" rx="8" fill="#ffffff" stroke="#9bcbaa" stroke-width="2"/>
+    <text x="362" y="643" text-anchor="middle" font-size="27" font-weight="700">EKS / Kubernetes 1.35</text>
+    <text x="1038" y="643" text-anchor="middle" font-size="27" font-weight="700">EKS / Kubernetes 1.35</text>
+    <path d="M362 657 V679" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <path d="M1038 657 V679" stroke="#57606a" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="362" y="716" text-anchor="middle" font-size="26" font-weight="700" fill="#116329">Applications still running</text>
+    <text x="362" y="751" text-anchor="middle" font-size="22" fill="#57606a">Deployments · Pods · Services</text>
+    <text x="1038" y="716" text-anchor="middle" font-size="26" font-weight="700" fill="#116329">Same application workloads</text>
+    <text x="1038" y="751" text-anchor="middle" font-size="22" fill="#57606a">No application-code or chart changes</text>
+
+    <text x="700" y="849" text-anchor="middle" font-size="28" font-weight="700">Upgrade the GitOps control plane, not the applications.</text>
+    <text x="700" y="882" text-anchor="middle" font-size="19" fill="#57606a">Runtime observations: supplied execution history · Configuration: verified in Git</text>
+  </g>
+</svg>
