@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="850" viewBox="0 0 1500 850" role="img" aria-labelledby="title desc">
+<title id="title">Security gates across five independent GitLab repositories</title>
+<desc id="desc">Five separately owned repositories: Terraform modules, infrastructure, GitOps, Helm charts and JSAPP microservices. Repository-specific CI verification with Trivy, Terraform, kubeconform, Gitleaks, Semgrep, Hadolint and a CycloneDX SBOM. The JSAPP merge request completed ten successful jobs, including blocking Gitleaks and SBOM jobs and advisory Semgrep and Hadolint jobs. A separate read-only monitor reads origin/main and reports version updates for review, never auto-upgrades.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/></marker></defs>
+<rect width="1500" height="850" fill="#ffffff"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="48" y="72" font-size="41" font-weight="700" fill="#152b43">DevSecOps across five GitLab repositories</text>
+<text x="48" y="112" font-size="23" fill="#5b687a">Different codebases, appropriate gates, one evidence-based delivery discipline</text>
+<text x="48" y="168" font-size="21" font-weight="700" fill="#254f81">REPOSITORY RESPONSIBILITY</text>
+<text x="48" y="432" font-size="21" font-weight="700" fill="#254f81">REPOSITORY-SPECIFIC CI</text>
+
+<rect x="48" y="196" width="272" height="172" rx="13" fill="#edf4fc" stroke="#acc6e5" stroke-width="2"/>
+<text x="65" y="235" font-size="26" font-weight="700" fill="#152b43">Terraform modules</text>
+<text x="65" y="280" font-size="22" fill="#465b71">Reusable IaC</text>
+<text x="65" y="311" font-size="22" fill="#465b71">module library</text>
+<path d="M184 370 V458" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="48" y="473" width="272" height="140" rx="13" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="65" y="520" font-size="24" font-weight="700" fill="#172d45">Terraform checks</text>
+<text x="65" y="559" font-size="24" font-weight="500" fill="#172d45">Trivy scanning</text>
+<rect x="338" y="196" width="272" height="172" rx="13" fill="#edf4fc" stroke="#acc6e5" stroke-width="2"/>
+<text x="355" y="235" font-size="26" font-weight="700" fill="#152b43">AWS platform</text>
+<text x="355" y="280" font-size="22" fill="#465b71">EKS infrastructure</text>
+<text x="355" y="311" font-size="22" fill="#465b71">and platform add-ons</text>
+<path d="M474 370 V458" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="338" y="473" width="272" height="140" rx="13" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="355" y="520" font-size="24" font-weight="700" fill="#172d45">Terraform checks</text>
+<text x="355" y="559" font-size="24" font-weight="500" fill="#172d45">Trivy scanning</text>
+<rect x="628" y="196" width="272" height="172" rx="13" fill="#f0f8f7" stroke="#b6d9cd" stroke-width="2"/>
+<text x="645" y="235" font-size="26" font-weight="700" fill="#152b43">GitOps</text>
+<text x="645" y="280" font-size="22" fill="#465b71">Argo CD and</text>
+<text x="645" y="311" font-size="22" fill="#465b71">desired cluster state</text>
+<path d="M764 370 V458" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="628" y="473" width="272" height="140" rx="13" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="645" y="520" font-size="24" font-weight="700" fill="#172d45">Config checks</text>
+<text x="645" y="559" font-size="24" font-weight="500" fill="#172d45">Trivy scanning</text>
+<rect x="918" y="196" width="272" height="172" rx="13" fill="#f5f3fb" stroke="#d0c6eb" stroke-width="2"/>
+<text x="935" y="235" font-size="26" font-weight="700" fill="#152b43">Helm charts</text>
+<text x="935" y="280" font-size="22" fill="#465b71">Application</text>
+<text x="935" y="311" font-size="22" fill="#465b71">deployment templates</text>
+<path d="M1054 370 V458" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="918" y="473" width="272" height="140" rx="13" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="935" y="520" font-size="24" font-weight="700" fill="#172d45">kubeconform</text>
+<text x="935" y="559" font-size="24" font-weight="500" fill="#172d45">Trivy scanning</text>
+<rect x="1208" y="196" width="272" height="172" rx="13" fill="#eff8f2" stroke="#abd4b5" stroke-width="2"/>
+<text x="1225" y="235" font-size="26" font-weight="700" fill="#152b43">JSAPP services</text>
+<text x="1225" y="280" font-size="22" fill="#465b71">Four Node.js</text>
+<text x="1225" y="311" font-size="22" fill="#465b71">microservices</text>
+<path d="M1344 370 V458" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="1208" y="473" width="272" height="140" rx="13" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+<text x="1225" y="520" font-size="24" font-weight="700" fill="#172d45">Gitleaks / SBOM</text>
+<text x="1225" y="559" font-size="24" font-weight="500" fill="#172d45">Semgrep / Hadolint</text>
+
+<rect x="48" y="647" width="856" height="136" rx="14" fill="#f0f8f5" stroke="#b8d9c9" stroke-width="2"/>
+<text x="72" y="686" font-size="26" font-weight="700" fill="#11644b">GitLab merge-request evidence</text>
+<text x="72" y="722" font-size="23" fill="#172d45">JSAPP: 10/10 successful jobs · 0 failed · 0 skipped</text>
+<text x="72" y="758" font-size="21" fill="#465b71">Blocking: Gitleaks + SBOM  |  Advisory: Semgrep + Hadolint</text>
+<rect x="930" y="647" width="522" height="136" rx="14" fill="#f4f6fa" stroke="#cbd5e1" stroke-width="2"/>
+<text x="954" y="686" font-size="26" font-weight="700" fill="#254f81">Read-only version monitor</text>
+<text x="954" y="723" font-size="22" fill="#172d45">Reads origin/main across 5 repos</text>
+<text x="954" y="759" font-size="21" fill="#465b71">Release review, no automatic updates</text>
+<text x="49" y="821" font-size="19" fill="#5b687a">November 2026 snapshot · separate CI pipelines per repository · no deployment implied by this diagram</text>
+</g></svg>

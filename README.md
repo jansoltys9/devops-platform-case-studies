@@ -35,6 +35,12 @@ Two parts of one cross-region lab migration, from environment preparation to new
 
 Upgrading a Terraform-managed Argo CD control plane after an EKS 1.35 compatibility issue, while keeping application workloads unchanged.
 
+### GitLab DevSecOps Security Baseline
+
+[Building DevSecOps Gates Across Five GitLab Repositories](case-studies/gitlab-devsecops-five-repositories/README.md)
+
+An evidence-led security rollout across Terraform, platform infrastructure, GitOps, Helm and Node.js services: pinned tools, blocking and advisory checks, a reviewed Gitleaks false-positive candidate, ten successful JSAPP merge-request jobs and a read-only tool-version monitor.
+
 ## Planned Case Studies
 
 - GitLab container-image pipeline evolution
