@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="850" viewBox="0 0 1500 850" role="img" aria-labelledby="title desc">
 <title id="title">Security gates across five independent GitLab repositories</title>
-<desc id="desc">Five separately owned repositories: Terraform modules, infrastructure, GitOps, Helm charts and JSAPP microservices. Repository-specific CI verification with Trivy, Terraform, kubeconform, Gitleaks, Semgrep, Hadolint and a CycloneDX SBOM. The JSAPP merge request completed ten successful jobs, including blocking Gitleaks and SBOM jobs and advisory Semgrep and Hadolint jobs. A separate read-only monitor reads origin/main and reports version updates for review, never auto-upgrades.</desc>
+<desc id="desc">Five separately owned repositories: Terraform modules, infrastructure, GitOps, Helm charts and JSAPP microservices. Repository-specific CI verification with Trivy, Terraform, kubeconform, Gitleaks, Semgrep, Hadolint and a CycloneDX SBOM. Job enforcement varies: blocking Gitleaks and SBOM, advisory Semgrep and Hadolint; Terraform, GitOps and Helm have domain-specific controls. A separate read-only monitor reads origin/main and reports version updates for review, never auto-upgrades.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/></marker></defs>
 <rect width="1500" height="850" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
@@ -51,12 +51,12 @@
 <text x="1225" y="559" font-size="24" font-weight="500" fill="#172d45">Semgrep / Hadolint</text>
 
 <rect x="48" y="647" width="856" height="136" rx="14" fill="#f0f8f5" stroke="#b8d9c9" stroke-width="2"/>
-<text x="72" y="686" font-size="26" font-weight="700" fill="#11644b">GitLab merge-request evidence</text>
-<text x="72" y="722" font-size="23" fill="#172d45">JSAPP: 10/10 successful jobs · 0 failed · 0 skipped</text>
-<text x="72" y="758" font-size="21" fill="#465b71">Blocking: Gitleaks + SBOM  |  Advisory: Semgrep + Hadolint</text>
+<text x="72" y="686" font-size="26" font-weight="700" fill="#11644b">Different controls, clear ownership</text>
+<text x="72" y="722" font-size="23" fill="#172d45">Validate source · review findings · preserve release boundaries</text>
+<text x="72" y="758" font-size="21" fill="#465b71">Example: JSAPP blocking Gitleaks/SBOM; advisory SAST/Docker lint</text>
 <rect x="930" y="647" width="522" height="136" rx="14" fill="#f4f6fa" stroke="#cbd5e1" stroke-width="2"/>
 <text x="954" y="686" font-size="26" font-weight="700" fill="#254f81">Read-only version monitor</text>
-<text x="954" y="723" font-size="22" fill="#172d45">Reads origin/main across 5 repos</text>
-<text x="954" y="759" font-size="21" fill="#465b71">Release review, no automatic updates</text>
+<text x="954" y="723" font-size="22" fill="#172d45">Reads tracked CI from origin/main</text>
+<text x="954" y="759" font-size="21" fill="#465b71">Compares pins; JSON report; review only</text>
 <text x="49" y="821" font-size="19" fill="#5b687a">November 2026 snapshot · separate CI pipelines per repository · no deployment implied by this diagram</text>
 </g></svg>

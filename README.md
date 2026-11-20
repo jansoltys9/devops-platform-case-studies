@@ -37,9 +37,9 @@ Upgrading a Terraform-managed Argo CD control plane after an EKS 1.35 compatibil
 
 ### GitLab DevSecOps Security Baseline
 
-[Building DevSecOps Gates Across Five GitLab Repositories](case-studies/gitlab-devsecops-five-repositories/README.md)
+[Engineering DevSecOps Pipelines Across Five GitLab Repositories](case-studies/gitlab-devsecops-five-repositories/README.md)
 
-An evidence-led security rollout across Terraform, platform infrastructure, GitOps, Helm and Node.js services: pinned tools, blocking and advisory checks, a reviewed Gitleaks false-positive candidate, ten successful JSAPP merge-request jobs and a read-only tool-version monitor.
+A practical engineering walkthrough of five repository-specific GitLab CI pipelines: what each validation and security control checks, how findings are handled, which gates block merging, and how a separate read-only monitor tracks pinned security tool versions.
 
 ## Planned Case Studies
 
