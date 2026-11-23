@@ -124,7 +124,21 @@ The application repository contains UI, user, product and order services. The De
 
 Pinned scanner images include Gitleaks `8.28.0`, Semgrep `1.178.0`, Hadolint `2.12.0-alpine` and Trivy `0.76.2`. The repository also contains an older Trivy `0.76.1` reference in its separate CI definitions; the monitor reports both for review rather than silently treating all occurrences as the same active job.
 
-The **release path** remains distinct from these merge-request checks: semantic-version validation → service image build → image scan → approved push to ECR → separate Helm/GitOps version update → Argo CD reconciliation. An MR security run does not itself mean a container was built, pushed or deployed.
+#### Trivy in JSAPP: two separate security responsibilities
+
+**Trivy is used for more than SBOM generation in the application delivery process.** Its merge-request and release responsibilities should not be combined into one ambiguous "Trivy scan":
+
+| Pipeline context | Job / control | What is checked or produced | Engineering boundary |
+|---|---|---|---|
+| Merge request | `devsecops:sbom` | Trivy creates a **CycloneDX SBOM**, an inventory of detected software components and dependencies | Blocking job in the reviewed MR; an SBOM is **not** a CVE vulnerability verdict |
+| Application release | `build_service_image` | Builds the selected versioned service image | A build is not proof that the resulting image is secure |
+| Application release | `scan_service_image` | Trivy image-vulnerability scanning is part of the pre-push release path, intended to inspect the built container image and its installed packages | Separate from MR SBOM creation; exact severity threshold, exit-code policy and scanner invocation must be confirmed in the active release CI YAML before claiming enforcement |
+| Application release | `push_service_image` | Publishes the approved service image to Amazon ECR | Registry write occurs only under the release job's configured conditions; no push happens in the security-only MR run |
+| GitOps promotion | Reviewed Helm/chart value update and Argo CD reconciliation | Selects the published image version for deployment | A separate deployment decision, not an implicit side effect of a scanner |
+
+The version inventory found **two Trivy image references in JSAPP**, `aquasec/trivy:0.76.1` and `aquasec/trivy:0.76.2`. The newer pin was recorded in the SBOM baseline; the older reference requires a review of the **active release CI definition**, rather than assuming it is unused or automatically replacing it. Docker image findings must be reviewed against the configured severity and failure policy. An image scan cannot replace Dockerfile linting, source SAST or dependency inventory.
+
+The **release path** remains distinct from these merge-request checks: semantic-version validation → service image build → Trivy image scan → approved push to ECR → separate Helm/GitOps version update → Argo CD reconciliation. An MR security run does not itself mean a container was built, pushed or deployed.
 
 Four additional **local `npm audit`** evaluations (one per service) passed at the time of assessment. They are point-in-time dependency evidence, not a substitute for continually maintained CI security gates.
 
@@ -147,17 +161,58 @@ A separate Python utility is the maintenance layer for these **five different pi
 | 5. Optionally compare releases | Uses public GitHub release metadata with `--online` | Identifies **newer-version review candidates**, not proven vulnerabilities |
 | 6. Report | Prints per-repository inventory and writes JSON when `--output` is provided | Makes evidence reusable for an upgrade backlog |
 
-The command used in the local maintenance workspace was:
+#### Where the central monitor belongs: separate GitLab maintenance repository
+
+The five **private GitLab repositories remain the source of truth** for their own `.gitlab-ci.yml`, nested CI includes, validation rules and pinned scanner versions. The monitor must **not** become a duplicate configuration authority or copy these pipelines into a public GitHub repository.
+
+The existing local working prototype was initially run from `_devsecops_batch_package/today-closeout/scripts/monitor_versions.py`. That is a **temporary delivery kit**, not a long-term home. The intended permanent, version-controlled location is the existing **`devops-tools-check`** repository, with this structure:
+
+```text
+~/Project/devops-tools-check/                 # GitLab maintenance repository (local checkout)
+└── tools/devsecops-version-monitor/
+    ├── scripts/monitor_versions.py          # read-only inventory and release comparison
+    ├── config/tools.json                    # list of five repos and public release sources
+    ├── tests/test_monitor.py                # scanner pin / source-ref regression tests
+    └── README.md                            # usage and operating boundaries
+
+~/Project/_local-reports/                     # local reports only (not committed)
+~/Project/{terraform-modules,jsappinf-platform,jsappinf-gitops,helmchartsappjs,JSAPP}/
+                                                 # five local GitLab working copies
+```
+
+**Current status of this location:** this is the intended promotion path; the original local prototype was tested successfully, but the monitor is not described here as already merged into `devops-tools-check` or deployed as a scheduled GitLab job. Promotion, GitLab permissions and scheduling must be verified separately.
+
+```text
+GitLab repositories (five independent main branches)
+    │  CI YAML, includes, pinned image references
+    ▼
+Authorized read-only Git fetch / clone (local or future CI job)
+    ▼
+GitLab devops-tools-check → monitor_versions.py
+    │                       └── tools.json
+    ▼
+JSON pin inventory + upstream-release review candidates
+    ▼
+Human-reviewed upgrade MR in each owning repository
+
+Public GitHub case study → explanation only, never the CI source of truth
+```
+
+For a local run from the intended location:
 
 ```bash
 mkdir -p "$HOME/Project/_local-reports/devsecops-version-monitor"
-py -3.12 "$HOME/Project/_devsecops_batch_package/today-closeout/scripts/monitor_versions.py" \
+py -3.12 "$HOME/Project/devops-tools-check/tools/devsecops-version-monitor/scripts/monitor_versions.py" \
   --base "$HOME/Project" \
   --online \
   --output "$HOME/Project/_local-reports/devsecops-version-monitor/versions.json"
 ```
 
-The inventory also reports each worktree as `CLEAN` or `DIRTY` **without changing it**. It does not run `git fetch`: `origin/main` is the *locally known* remote-tracking ref, so freshness of that ref must be managed separately. Release lookups may be unavailable or rate-limited; in that case the upstream result is **unverified**, not a safe-to-upgrade decision.
+This command reads **locally cached** `refs/remotes/origin/main`. It does **not** fetch from GitLab. To reflect the current server-side `main`, first refresh the five repositories' remote-tracking refs with permitted read-only `git fetch origin main` operations, or run a future GitLab CI job against fresh authorized clones. `--online` queries *public upstream software releases*; it does **not** refresh or authenticate to GitLab. The monitor reads tracked CI files and does not apply Terraform, deploy workloads, upgrade tools, open MRs, or push commits.
+
+A future scheduled job in **`devops-tools-check`** could obtain read-only access to the five GitLab projects via a narrowly scoped `CI_JOB_TOKEN` allowlist and archive the JSON report. That capability is a **future design**, not an enabled schedule. It should not require five new long-lived personal/project tokens or new paid services; cross-project access must first be permitted and tested.
+
+The inventory also reports each worktree as `CLEAN` or `DIRTY` **without changing it**. Release lookups may be unavailable or rate-limited; in that case the upstream result is **unverified**, not a safe-to-upgrade decision.
 
 #### Example version-review report
 
@@ -192,9 +247,9 @@ The practical outcome is a **repository-specific security review layer** instead
 
 ## Current Status and Limits
 
-**Implemented:** baseline CI controls in five repositories; Gitleaks/Trivy SBOM blocking and Semgrep/Hadolint advisory in JSAPP; a local, read-only version monitor.
+**Implemented:** baseline CI controls in five repositories; Gitleaks/Trivy SBOM blocking and Semgrep/Hadolint advisory in JSAPP; an existing service-image scan in the separate release process; a tested local, read-only version monitor.
 
-**Not claimed:** automated scanner upgrades, a scheduled central version-monitor job, validated SBOM contents, zero outstanding IaC warnings, guaranteed Kubernetes runtime health, production penetration testing or full DAST coverage. No public GitHub repository contains the private CI source or runtime credentials.
+**Not claimed:** the exact blocking policy for the release image scan without its active job definition, deployment of the monitor to GitLab `devops-tools-check`, automated scanner upgrades, a scheduled central version-monitor job, validated SBOM contents, zero outstanding IaC warnings, guaranteed Kubernetes runtime health, production penetration testing or full DAST coverage. No public GitHub repository contains the private CI source or runtime credentials.
 
 ## Technologies
 
